@@ -6,16 +6,24 @@ files related to Adam and Matt's Gamemaker: Studio game
 
 ### enemies
 [x] dunmot
+
 [ ] rurtle
+
 [ ] "fly"
+
 [ ] "shooter"
+
 [ ] "lootmite"
 
 ### characters
 *character - primary action - secondary action - number of mod slots - miscellaneous*
+
 [x] spartan - [x] spear - [x] shield - [ ] 8 -
+
 [x] outlaw - [x] revolver - [ ] lasso - [ ] 6 -
+
 [x] greaser - [x] stilleto - [ ] taunt - [ ] 10 -
+
 [ ] cyborg - [ ] laser cannon - [ ] short teleport - [ ] 8 -
 
 ### mods
