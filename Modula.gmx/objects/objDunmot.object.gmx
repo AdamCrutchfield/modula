@@ -36,9 +36,11 @@ image_yscale = size;
 maxHealth = 25;
 currentHealth = maxHealth;
 
-waitTime = 0;
 aggroTarget = objPlayer;
 
+//behavior
+
+waitTime = 0;
 hidingAggroRange = 200;
 alertAggroRange = 400;
 
