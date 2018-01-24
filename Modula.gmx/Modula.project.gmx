@@ -20,6 +20,7 @@
       <sprite>sprites\sprDunmot</sprite>
       <sprite>sprites\sprDunmotDead</sprite>
       <sprite>sprites\sprRurtle</sprite>
+      <sprite>sprites\sprFly</sprite>
     </sprites>
     <sprites name="weapons">
       <sprite>sprites\sprSpear</sprite>
@@ -93,6 +94,7 @@
     <objects name="enitites">
       <object>objects\objPlayer</object>
       <object>objects\objDunmot</object>
+      <object>objects\objFly</object>
       <object>objects\objDunmotDead</object>
     </objects>
     <objects name="weapons">
