@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>width = (game.drawScale * 16);
+
+hiddenY = y;
+shownY = y + game.invHiddenYOffset;
 </string>
           </argument>
         </arguments>
@@ -49,6 +52,8 @@
           <argument>
             <kind>1</kind>
             <string>if (game.showInv) {
+    targetY = shownY;
+    y += (targetY - y) / 1.5;
     
     //Variables
     var item = game.inventory[slot]; //item being held in that box
@@ -65,7 +70,10 @@
             game.inventory[slot] = temp;
         }
     };
-};
+} else {
+    targetY = hiddenY;
+    y += (targetY - y) / 1.5;
+}
 </string>
           </argument>
         </arguments>
@@ -88,7 +96,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (game.showInv) {
+            <string>//if (game.showInv) {
 
     //Variables
     var item = game.inventory[slot]; //item being held in that box
@@ -113,7 +121,7 @@
     
      //If there's an item in a box, draw it
     if (item != modNone) draw_sprite_ext(sprItems, getModImageIndex(item), x, y, game.drawScale, game.drawScale, 0, c_white, 1);
-};
+//};
 </string>
           </argument>
         </arguments>

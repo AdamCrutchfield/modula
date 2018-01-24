@@ -43,10 +43,12 @@ enum flyStates {
     aggro
 }
 
+aggroRange = 600;
+
 centralX = x;
 centralY = y;
 
-state = flyStates.hiding;
+state = flyStates.idle;
 </string>
           </argument>
         </arguments>
@@ -69,106 +71,52 @@ state = flyStates.hiding;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//oldDistanceFromPlayer = point_distance(x, y, aggroTarget.x, aggroTarget.y);
+            <string>event_inherited();
 
-aggroX = objDunmotAggro.x;
-aggroY = objDunmotAggro.y;
+var aggroX = objPlayer.x;
+var aggroY = objPlayer.y;
 
-event_inherited();
-
-var directionToPlayer = point_direction(x, y, objPlayer.x, objPlayer.y);
+var directionToTarget = point_direction(x, y, aggroX, aggroY);
+var centralDistanceToTarget = point_distance(centralX, centralY, aggroX, aggroY);
 
 switch (state) {
-    case dunmotStates.aggro:
-        sprite_index = sprDunmot;
-        invincible = false;
-        
-        //run after player
-        addForce(id, moveSpeedThisFrame, point_direction(x, y, aggroX, aggroY));
+    case flyStates.aggro:
+    
+        //fly after player in sine wave pattern
+        centralX += (aggroX - centralX) / moveSpeedPerSecond;
+        centralY += (aggroY - centralY) / moveSpeedPerSecond;
+        addForce(id, moveSpeedThisFrame, point_direction(x, y, centralX, centralY));
         
         //stop after losing sight of player
-        if (distance_to_object(objPlayer) &gt; alertAggroRange) {
-            waitTime = 90;
-            state = dunmotStates.idle;
-            nextState = dunmotStates.hiding;
+        if (distance_to_object(objPlayer) &gt; aggroRange) {
+            state = flyStates.idle;
         }
         
         //attack player
-        if (place_meeting(x, y, objPlayer)) dealDamage(objPlayer, 25, 20, directionToPlayer, true);
+        if (place_meeting(x, y, objPlayer)) dealDamage(objPlayer, 20, 20, directionToTarget, true);
         
         break;
 
-    case dunmotStates.hiding:
-        sprite_index = sprDunmotHiding;
-        invincible = true;
-        //aggro all dunmots when player gets close
-        if (distance_to_object(objPlayer) &lt; hidingAggroRange and !collision_line(x, y, objPlayer.x, objPlayer.y, objWall, false, true)) objDunmot.state = dunmotStates.aggro;
-        break;
-
-    case dunmotStates.idle:
-        sprite_index = sprDunmot;
-        invincible = false;
-        //aggro all dunmots when player gets close
-        if (distance_to_object(objPlayer) &lt; alertAggroRange and nextState = dunmotStates.hiding and !collision_line(x, y, objPlayer.x, objPlayer.y, objWall, false, true)) objDunmot.state = dunmotStates.aggro;
-        
-        waitTime--;
-        if (waitTime &lt;= 0) state = nextState;
+    case flyStates.idle:
+        //aggro after seeing player
+        if (distance_to_object(objPlayer) &lt; aggroRange) {
+            state = flyStates.aggro;
+        }
         break;
 }
 
 iFrames--;
 if (currentHealth &lt;= 0) {
     instance_destroy();
-    with (instance_create(x, y, objDunmotDead)) {
+    /*with (instance_create(x, y, objDunmotDead)) {
         vx = other.vx;
         vy = other.vy;
         size = other.size;
         iFrames = other.iFrames;
-    }
+    }*/
     instance_create(x, y, objHealthPickup);
     generateMod(x, y, 0, 100);
 }
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>switch state {
-    case dunmotStates.aggro:
-        var facingLeft = sign(x - objPlayer.x);
-        if (facingLeft = 0) facingLeft = 1;
-        image_xscale = facingLeft * size;
-    
-        break;
-    case dunmotStates.idle:
-        if (waitTime &lt; 60 and waitTime &gt; 30 and nextState = dunmotStates.hiding) {
-            image_xscale = size * -1;
-        } else {
-            image_xscale = size;
-        }
-        break;
-}
-
-event_inherited();
-
-draw_text(32, 64, "State: " + string(state));
 </string>
           </argument>
         </arguments>

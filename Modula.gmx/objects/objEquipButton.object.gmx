@@ -26,6 +26,9 @@
           <argument>
             <kind>1</kind>
             <string>width = (game.drawScale * 16);
+
+shownX = x;
+hiddenX = x + game.modHiddenXOffset;
 </string>
           </argument>
         </arguments>
@@ -49,6 +52,7 @@
           <argument>
             <kind>1</kind>
             <string>if (game.showInv) {
+    x += (shownX - x) / 1.5;
     
     //Variables
     var item = game.equipped[slot]; //item being held in that box
@@ -74,7 +78,9 @@
             script_execute(temp, modEvents.drop);
         }
     };
-};
+} else {
+    x += (hiddenX - x) / 1.5;
+}
 </string>
           </argument>
         </arguments>
@@ -97,7 +103,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (game.showInv){
+            <string>//if (game.showInv){
 
     //Variables
     var item = game.equipped[slot]; //item being held in that box
@@ -116,7 +122,7 @@
     
      //If there's an item in a box, draw it
     if (containsItem) draw_sprite_ext(sprItems, getModImageIndex(item), x, y, game.drawScale, game.drawScale, 0, c_white, 1);
-};
+//};
 </string>
           </argument>
         </arguments>
