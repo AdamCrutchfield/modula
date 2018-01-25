@@ -85,10 +85,10 @@ switch (state) {
         //fly after player in sine wave pattern
         centralX += (aggroX - centralX) / moveSpeedPerSecond;
         centralY += (aggroY - centralY) / moveSpeedPerSecond;
-        addForce(id, moveSpeedThisFrame, point_direction(x, y, centralX, centralY));
+        addForce(id, sin(point_distance(x, y, centralX, centralY)) + 4, point_direction(x, y, centralX, centralY) - 55);
         
         //stop after losing sight of player
-        if (distance_to_object(objPlayer) &gt; aggroRange) {
+        if (point_distance(centralX, centralY, objPlayer.x, objPlayer.y) &gt; aggroRange) {
             state = flyStates.idle;
         }
         
@@ -99,7 +99,7 @@ switch (state) {
 
     case flyStates.idle:
         //aggro after seeing player
-        if (distance_to_object(objPlayer) &lt; aggroRange) {
+        if (point_distance(centralX, centralY, objPlayer.x, objPlayer.y) &lt; aggroRange) {
             state = flyStates.aggro;
         }
         break;

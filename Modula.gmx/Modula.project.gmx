@@ -29,7 +29,6 @@
       <sprite>sprites\sprBullet</sprite>
     </sprites>
     <sprite>sprites\sprHealthPickup</sprite>
-    <sprite>sprites\sprLuckMod</sprite>
     <sprite>sprites\sprBorder</sprite>
     <sprite>sprites\sprBorderSelected</sprite>
     <sprite>sprites\sprBorderEquipped</sprite>
