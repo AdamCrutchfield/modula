@@ -107,11 +107,13 @@
       <object>objects\objInvButton</object>
       <object>objects\objEquipButton</object>
     </objects>
+    <object>objects\objCharacterSelect</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmInit</room>
     <room>rooms\rmTitle</room>
     <room>rooms\rmTest</room>
+    <room>rooms\room3</room>
   </rooms>
   <constants number="4">
     <constant name="TILE_SIZE">64</constant>
