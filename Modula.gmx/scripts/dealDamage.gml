@@ -1,20 +1,20 @@
 ///dealDamage(id, damage, force, pushDirection, useIFrames)
 
-var target = argument0;
-var damage = argument1;
-var force = argument2;
-var pushDirection = argument3;
-var useIFrames = argument4;
+var _target = argument0;
+var _damage = argument1;
+var _force = argument2;
+var _pushDirection = argument3;
+var _useIFrames = argument4;
 
-with (target) {
-    if (useIFrames) {
+with (_target) {
+    if (_useIFrames) {
         if (iFrames <= 0) {
-            addForce(id, force, pushDirection);
-            currentHealth -= damage;
+            addForce(id, _force, _pushDirection);
+            currentHealth -= _damage;
             iFrames = iFramesMax;
         }
     } else {
-        currentHealth -= damage;
+        currentHealth -= _damage;
     }
     
     if (object_get_name(id) == "objDunmot") {

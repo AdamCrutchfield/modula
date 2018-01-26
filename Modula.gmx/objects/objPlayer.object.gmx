@@ -35,6 +35,8 @@ ay = 0;                     //accelerationY
 vx = 0;                     //velocityX
 vy = 0;                     //velocityY
 
+damageCoefficient = 1;
+
 iFramesMax = 15;
 cooldownAfterAttack = 5;
 cooldownAfterAttackSpartan = 8;
@@ -231,7 +233,7 @@ draw_set_color(c_red);
 draw_rectangle(x - (currentHealth / maxHealth * 100 / 4), y + 20, x + (currentHealth / maxHealth * 100 / 4), y + 25, false);
 
 //debug
-draw_text(128, 32, global.luck);
+draw_text(128, 32, damageCoefficient);
 draw_text(128, 64, objPlayer.cooldownAfterAttack);
 </string>
           </argument>

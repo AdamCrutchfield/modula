@@ -11,13 +11,13 @@ if (makeMod) {
     //if you succeed a bunch of times in a row, make a special mod
     if (lootQuality > limit){    
         with instance_create(xx, yy, objMod) {
-            special = true;
+            modType = choose(modLuck, modCelerity, modEtherealness, modRash);
         }
     //otherwise, make a normal mod with strength equal to number of successes
     } else {
         with instance_create(xx, yy, objMod) {
             strength = lootQuality;
-            modType = choose(modLuck, modCelerity, modEtherealness, modRash);
+            modType = choose(modDamage);
         }
     }
 } else {

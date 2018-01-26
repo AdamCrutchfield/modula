@@ -99,7 +99,7 @@ for (i = 1; i &lt;= swingSpeed; i++) {
         //damage all enemies that were hit
         for(var i = 0; i &lt; count; i++) {
             instance_activate_object(hitEnemies[i]);
-            dealDamage(hitEnemies[i], damage, push, point_direction(objPlayer.x, objPlayer.y, hitEnemies[i].x, hitEnemies[i].y), true);
+            dealDamage(hitEnemies[i], damage * objPlayer.damageCoefficient, push, point_direction(objPlayer.x, objPlayer.y, hitEnemies[i].x, hitEnemies[i].y), true);
         }
         hasHitThisFrame = true;
     }
