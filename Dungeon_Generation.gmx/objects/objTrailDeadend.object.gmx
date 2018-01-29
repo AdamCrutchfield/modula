@@ -25,13 +25,37 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 20;
+            <string>alarm[0] = 2;
+alarm[1] = -1;
 //Visual demo
 image_speed = 0;
 image_index = 4;
 //variables
-roomType = type.deadend; //Deadend
+roomType = roomtype.deadend; //Deadend
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>scrSetRoomID();
 </string>
           </argument>
         </arguments>
@@ -76,7 +100,6 @@ rm = -1;
 //Write to the grids
 ds_grid_set(global.dsRoomType,((x + 4)/8),((y + 4)/8),roomType);
 ds_grid_set(global.dsRoomTiling,((x + 4)/8),((y + 4)/8),tiling);
-ds_grid_set(global.dsRoomId,((x + 4)/8),((y + 4)/8),rm);
 //Who did I connect to?
 switch (tiling) {
     case 1: //East
@@ -100,6 +123,8 @@ switch (tiling) {
         ds_grid_set(global.dsRoomTiling,x,y + 8,connectedTo.tiling);
         break;
 };
+//Write IDs to all trails
+alarm[1] = 1;
 //Demonstration ONLY
 sprite_index = sprDemorooms;
 image_index = tiling;

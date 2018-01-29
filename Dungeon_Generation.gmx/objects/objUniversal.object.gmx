@@ -30,18 +30,66 @@ randomize();
 instance_create(0,0,objTrailmap);
 instance_create(0,0,objTrailblazer);
 //Variables
-enum type {
+enum roomtype {
     start,
     finish,
     connect,
     deadend
 }
+enum floortype {
+    greece,
+    western,
+    city,
+    future
+}
+global.FloorType = floortype.western; //Default for testing
 global.dsRoomType = ds_grid_create(8,8);
 global.dsRoomTiling = ds_grid_create(8,8);
 global.dsRoomId = ds_grid_create(8,8);
-ds_grid_set_region(global.dsRoomType,0,0,8,8,-1);
-ds_grid_set_region(global.dsRoomTiling,0,0,8,8,0);
+ds_grid_set_region(global.dsRoomType,0,0,8,8,-1); //May not need to use
+ds_grid_set_region(global.dsRoomTiling,0,0,8,8,-1);
 ds_grid_set_region(global.dsRoomId,0,0,8,8,-1);
+//Debug
+debug = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Debug
+var ix = 0;
+var iy = 0;
+
+if (debug) {
+    draw_set_color(c_white);
+    for (ix = 0; ix &lt; 8; ix ++) { //X position of the grid
+        for (iy = 0; iy &lt; 8; iy++) { //Y position of the grid
+            if (abs(mouse_x - ((ix * 8) - 4)) &lt; 2) &amp;&amp; (abs(mouse_y - ((iy * 8) - 4)) &lt; 2) {
+                var write = ds_grid_get(global.dsRoomId,ix,iy);
+                draw_set_font(font0);
+                draw_text((ix * 8) - 4,(iy * 8) - 4,string(write));
+            }
+        }
+    }
+    draw_set_color(c_black);
+}
 </string>
           </argument>
         </arguments>
@@ -88,6 +136,29 @@ ds_grid_set_region(global.dsRoomId,0,0,8,8,-1);
           <argument>
             <kind>1</kind>
             <string>game_end();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="10" enumb="17">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>debug = !debug;
 </string>
           </argument>
         </arguments>

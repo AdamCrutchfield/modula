@@ -14,7 +14,12 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scrDropTrail.gml</script>
+    <script>scripts\scrSetRoomID.gml</script>
+    <script>scripts\scrBuildFloor.gml</script>
   </scripts>
+  <fonts name="fonts">
+    <font>fonts\font0</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objUniversal</object>
     <object>objects\objTrailmap</object>

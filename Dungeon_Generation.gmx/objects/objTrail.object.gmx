@@ -37,9 +37,9 @@ south = false;
 direct = false;
 createDeadend = true;
 //Entrance, connector, or exit?
-roomType = type.connect; //Connector by default
-if (global.rooms == global.maxRooms) roomType = type.start; //Entrance
-if (global.rooms == 1) roomType = type.finish; //Exit
+roomType = roomtype.connect; //Connector by default
+if (global.rooms == global.maxRooms) roomType = roomtype.start; //Entrance
+if (global.rooms == 1) roomType = roomtype.finish; //Exit
 //Tiling
 tiling = 0;
 </string>
