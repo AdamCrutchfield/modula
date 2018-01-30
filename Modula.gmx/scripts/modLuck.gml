@@ -12,11 +12,12 @@
  */
 
 event = argument0;
+_strength = argument1;
 switch (event) {
     case modEvents.pickup:
-        global.luck++;
+        global.luck += _strength;
         break;
     case modEvents.drop:
-        global.luck--;
+        global.luck -= _strength;
         break;
 }

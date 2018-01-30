@@ -75,7 +75,10 @@ enum modEvents {
 
 //----------------------------INVENTORY-----------------------//
 showInv = false;
-mouseItem = modNone; //There is by default no item being held by the mouse
+
+mouse[0] = modLuck; //There is by default no item being held by the mouse
+mouse[1] = 1;
+
 drawScale = 1.5;
 instance_create(x,y,objMouseItem);
 
@@ -86,28 +89,39 @@ modHiddenXOffset = 1000;
 
 //Create the buttons for the inventory
 var slotNum = 0;
+inventory[0, 0] = modNone;
+inventory[0, 1] = 1;
 for (i = 0; i &lt; INV_ROWS; i++) {
     for (j = 0; j &lt; INV_COLUMNS; j++) {
-        inventory[slotNum] = modNone; //inventory is an array that tracks what item is in what slot at any time. -1 means no item. The number here represents the item's id and is represented by the correlating image in "sprItems"
+        inventory[slotNum, 0] = modNone; //inventory is an array that tracks what item is in what slot at any time. -1 means no item. The number here represents the item's id and is represented by the correlating image in "sprItems"
+        inventory[slotNum, 1] = 1;
         button[slotNum] = instance_create(j * distanceBetweenSlots + 64, i * distanceBetweenSlots + 64 - invHiddenYOffset, objInvButton);
         button[slotNum].slot = slotNum; //Allows an individual button to be easily called upon later.
+        button[slotNum].strength = 1;
         slotNum++;
     }
 }
 
 //create the buttons for the equipped slots
-for (i = 0; i &lt; 10; i++) {
-    equipped[i] = modNone; //inventory is an array that tracks what item is in what slot at any time. -1 means no item. The number here represents the item's id and is represented by the correlating image in "sprItems"
+var i = 0;
+equipped[0, 0] = 0;
+equipped[0, 1] = 1;
+for (i = i; i &lt; 10; i++) {
+    equipped[i, 0] = modNone; //inventory is an array that tracks what item is in what slot at any time. -1 means no item. The number here represents the item's id and is represented by the correlating image in "sprItems"
+    equipped[i, 1] = 1;
     equippedButton[i] = instance_create(view_wview[0] - 64 + modHiddenXOffset, i * distanceBetweenSlots + 64, objEquipButton);
     equippedButton[i].slot = i; //Allows an individual button to be easily called upon later.
+    equippedButton[i].strength = 1;
 }
 
 //Starting inventory
-inventory[0] = modLuck;
-inventory[1] = modCelerity;
-inventory[2] = modEtherealness;
-inventory[3] = modRash;
-inventory[4] = modLuck;
+inventory[0, 0] = modLuck;
+inventory[1, 0] = modCelerity;
+inventory[2, 0] = modEtherealness;
+inventory[3, 0] = modRash;
+
+inventory[4, 0] = modLuck;
+inventory[4, 1] = 4;
 </string>
           </argument>
         </arguments>
@@ -139,11 +153,13 @@ if (keyboard_check_pressed(vk_space)) instance_create(mouse_x, mouse_y, objDunmo
 if (keyboard_check_pressed(ord("M"))) {
     with instance_create(mouse_x, mouse_y, objMod){
         modType = modLuck;
+        strength = 1;
     }
 }
 if (keyboard_check_pressed(ord("N"))) {
     with instance_create(mouse_x, mouse_y, objMod){
         modType = modCelerity;
+        strength = 1;
     }
 }
 
@@ -153,20 +169,9 @@ if (keyboard_check_pressed(ord("B"))) {
 //add a random item to inventory
 if (keyboard_check_released(vk_shift)) {
     var item = choose(modLuck, modCelerity, modEtherealness, modRash);
-    scrItemAdd(item);
+    scrItemAdd(item, 1);
 }
 
-//drop last mod
-/*if (keyboard_check_pressed(ord("P"))) {
-    if (ds_list_size(global.equippedMods) &gt; 0) {
-        var i = ds_list_size(global.equippedMods) - 1;
-        while (global.equippedMods[| i] == modNone) {
-            if (i == 0) break;
-            i--;
-        }
-        dropMod(i);
-    }
-}*/
 switch (room) {
     case rmTitle:
         //choose character
@@ -192,19 +197,6 @@ switch (room) {
     default:
         //Press enter to open inventory
         if (keyboard_check_released(vk_enter)) showInv = !showInv; //toggles inventory
-        if (showInv) {
-            //instance_deactivate_all(true);
-            //instance_activate_object(objMouseItem);
-            
-            //instance_activate_object(objInvButton);
-            //instance_activate_object(objEquipButton);
-        } else {
-            //instance_activate_all();
-            //instance_deactivate_object(objMouseItem);
-            
-            //instance_deactivate_object(objInvButton);
-            //instance_activate_object(objEquipButton);
-        }
         break;
 }
 </string>
