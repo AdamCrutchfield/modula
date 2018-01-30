@@ -36,6 +36,31 @@ enum playerCharacters {
     cyborg
 }
 
+characterSprites[playerCharacters.spartan] = sprTan;
+characterSprites[playerCharacters.sherrif] = sprSherrif;
+characterSprites[playerCharacters.greaser] = sprGreaser;
+characterSprites[playerCharacters.cyborg] = sprCyborg;
+
+characterMaxHealth[playerCharacters.spartan] = 120;
+characterMaxHealth[playerCharacters.sherrif] = 100;
+characterMaxHealth[playerCharacters.greaser] = 80;
+characterMaxHealth[playerCharacters.cyborg] = 100;
+
+characterBaseCooldownAfterAttack[playerCharacters.spartan] = 8;
+characterBaseCooldownAfterAttack[playerCharacters.sherrif] = 5;
+characterBaseCooldownAfterAttack[playerCharacters.greaser] = 5;
+characterBaseCooldownAfterAttack[playerCharacters.cyborg] = 5;
+
+characterMoveSpeedPerSecond[playerCharacters.spartan] = 600;
+characterMoveSpeedPerSecond[playerCharacters.sherrif] = 600;
+characterMoveSpeedPerSecond[playerCharacters.greaser] = 650;
+characterMoveSpeedPerSecond[playerCharacters.cyborg] = 550;
+
+characterBaseDamage[playerCharacters.spartan] = 10;
+characterBaseDamage[playerCharacters.sherrif] = 10;
+characterBaseDamage[playerCharacters.greaser] = 10;
+characterBaseDamage[playerCharacters.cyborg] = 10;
+
 //mods enumeration
 enum modEvents {
     leftClick,

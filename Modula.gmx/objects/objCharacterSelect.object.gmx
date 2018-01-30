@@ -25,7 +25,7 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_character = global.playerCharacters.spartan;
+            <string>_character = playerCharacters.spartan;
 
 image_xscale = 3;
 image_yscale = 3;
@@ -84,23 +84,7 @@ if (mouseHovering) {
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>switch (_character) {
-    case playerCharacters.spartan: 
-        sprite_index = sprTan;
-        break;
-        
-    case playerCharacters.sherrif: 
-        sprite_index = sprSherrif;
-        break;
-        
-    case playerCharacters.greaser: 
-        sprite_index = sprGreaser;
-        break;
-        
-    default:
-        sprite_index = sprTan;
-        break;
-}
+            <string>sprite_index = game.characterSprites[_character];
 
 draw_self();
 </string>

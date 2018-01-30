@@ -28,21 +28,13 @@
             <string>event_inherited();
 
 //movement variables
-moveSpeedPerSecond = 600;   //base movement speed in pixels per second
 frict = 0.8;                //friction
 ax = 0;                     //accelerationX
 ay = 0;                     //accelerationY
 vx = 0;                     //velocityX
 vy = 0;                     //velocityY
 
-damageCoefficient = 1;
-
 iFramesMax = 15;
-cooldownAfterAttack = 5;
-cooldownAfterAttackSpartan = 8;
-cooldownAfterAttackSherrif = 5;
-cooldownAfterAttackGreaser = 5;
-cooldownAfterAttackCyborg = 5;
 
 attackCooldown = 0;
 shieldCooldown = 0;
@@ -57,32 +49,24 @@ enum states {
 }
 state = states.normal;
 
+//determine vars based on selected character
+sprite_index = game.characterSprites[global.character];
+maxHealth = game.characterMaxHealth[global.character];
+cooldownAfterAttack = game.characterBaseCooldownAfterAttack[global.character];
+moveSpeedPerSecond = game.characterMoveSpeedPerSecond[global.character];
+damage = game.characterBaseDamage[global.character];
+
+//for special stuff other than base stats
 switch (global.character) {
     case playerCharacters.spartan:
-        sprite_index = sprTan;
-        maxHealth = 120;
-        cooldownAfterAttack = cooldownAfterAttackSpartan;
         instance_create(x, y, objShield);
         break;
-        
     case playerCharacters.sherrif:
-        sprite_index = sprSherrif;
-        maxHealth = 100;
-        cooldownAfterAttack = cooldownAfterAttackSherrif;
         break;
-        
     case playerCharacters.greaser:
-        sprite_index = sprGreaser;
-        maxHealth = 80;
-        cooldownAfterAttack = cooldownAfterAttackGreaser;
         global.luck = 1;
-        moveSpeedPerSecond = 650;
         break;
     case playerCharacters.cyborg:
-        sprite_index = sprCyborg;
-        maxHealth = 100;
-        cooldownAfterAttack = cooldownAfterAttackCyborg;
-        moveSpeedPerSecond = 550;
         break;
 }
 
@@ -203,6 +187,29 @@ if (currentHealth &lt;= 0) game_restart();
         </arguments>
       </action>
     </event>
+    <event eventtype="8" enumb="64">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_text(32, 32, damage)
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -233,8 +240,10 @@ draw_set_color(c_red);
 draw_rectangle(x - (currentHealth / maxHealth * 100 / 4), y + 20, x + (currentHealth / maxHealth * 100 / 4), y + 25, false);
 
 //debug
+/*
 draw_text(128, 32, damageCoefficient);
 draw_text(128, 64, objPlayer.cooldownAfterAttack);
+*/
 </string>
           </argument>
         </arguments>

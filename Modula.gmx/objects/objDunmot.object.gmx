@@ -122,13 +122,13 @@ switch (state) {
 iFrames--;
 if (currentHealth &lt;= 0) {
     instance_destroy();
-    with (instance_create(x, y, objDunmotDead)) {
+    /*with (instance_create(x, y, objDunmotDead)) {
         vx = other.vx;
         vy = other.vy;
         size = other.size;
         iFrames = other.iFrames;
-    }
-    instance_create(x, y, objHealthPickup);
+    }*/
+    if (irandom(100) &gt;= 25) instance_create(x, y, objHealthPickup);
     generateMod(x, y, 0, 100);
 }
 </string>
@@ -170,8 +170,6 @@ if (currentHealth &lt;= 0) {
 }
 
 event_inherited();
-
-draw_text(32, 64, "State: " + string(state));
 </string>
           </argument>
         </arguments>

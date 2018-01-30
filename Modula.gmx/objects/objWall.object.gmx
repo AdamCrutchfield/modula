@@ -50,7 +50,7 @@ depth = -y;
           <argument>
             <kind>1</kind>
             <string>//draw_self();
-draw_set_color(c_olive);
+draw_set_color(c_dkgray);
 draw_rectangle(bbox_left, bbox_top - wallHeight, bbox_right, bbox_bottom, false);
 draw_set_color(c_ltgray);
 draw_rectangle(bbox_left, bbox_top - wallHeight, bbox_right, bbox_bottom - wallHeight, false);

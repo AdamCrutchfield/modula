@@ -30,7 +30,6 @@ stabDistance = 100;
 
 currentDistance = 0;
 
-damage = 10;
 push = 10;
 
 //sets sprite size
@@ -106,7 +105,7 @@ for (i = 1; i &lt;= stabSpeed; i++) {
         //reactivate and damage all enemies that were hit
         for(var i = 0; i &lt; count; i++) {
             instance_activate_object(hitEnemies[i]);
-            dealDamage(hitEnemies[i], damage * objPlayer.damageCoefficient, push, direction, true);
+            dealDamage(hitEnemies[i], objPlayer.damage, push, direction, true);
         }
         hasHitThisFrame = true;
     }

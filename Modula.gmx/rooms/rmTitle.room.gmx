@@ -55,7 +55,7 @@
     <instance objName="objCharacterSelect" x="160" y="608" name="inst_56E9F864" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCharacterSelect" x="224" y="608" name="inst_5E845990" locked="0" code="_character = playerCharacters.sherrif;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCharacterSelect" x="288" y="608" name="inst_03050DC9" locked="0" code="_character = playerCharacters.greaser;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objCharacterSelect" x="352" y="608" name="inst_65AA58D1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objCharacterSelect" x="352" y="608" name="inst_65AA58D1" locked="0" code="_character = playerCharacters.cyborg;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles/>
   <PhysicsWorld>0</PhysicsWorld>
