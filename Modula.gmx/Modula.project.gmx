@@ -35,6 +35,7 @@
     <sprite>sprites\sprBorderEquippedSelected</sprite>
     <sprite>sprites\sprItems</sprite>
     <sprite>sprites\sprTitle</sprite>
+    <sprite>sprites\sprShop</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -108,8 +109,11 @@
       <object>objects\objMouseItem</object>
       <object>objects\objInvButton</object>
       <object>objects\objEquipButton</object>
+      <object>objects\objInventorySlot</object>
+      <object>objects\objInvControl</object>
     </objects>
     <object>objects\objCharacterSelect</object>
+    <object>objects\objShop</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rmInit</room>

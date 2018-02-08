@@ -76,7 +76,7 @@ enum modEvents {
 //----------------------------INVENTORY-----------------------//
 showInv = false;
 
-mouse[0] = modLuck; //There is by default no item being held by the mouse
+mouse[0] = modNone; //There is by default no item being held by the mouse
 mouse[1] = 1;
 
 drawScale = 1.5;
@@ -84,35 +84,99 @@ instance_create(x,y,objMouseItem);
 
 distanceBetweenSlots = 48 + 0;
 
-invHiddenYOffset = 1000;
-modHiddenXOffset = 1000;
-
-//Create the buttons for the inventory
-var slotNum = 0;
+//create all buttons
 inventory[0, 0] = modNone;
 inventory[0, 1] = 1;
-for (i = 0; i &lt; INV_ROWS; i++) {
-    for (j = 0; j &lt; INV_COLUMNS; j++) {
-        inventory[slotNum, 0] = modNone; //inventory is an array that tracks what item is in what slot at any time. -1 means no item. The number here represents the item's id and is represented by the correlating image in "sprItems"
-        inventory[slotNum, 1] = 1;
-        button[slotNum] = instance_create(j * distanceBetweenSlots + 64, i * distanceBetweenSlots + 64 - invHiddenYOffset, objInvButton);
-        button[slotNum].slot = slotNum; //Allows an individual button to be easily called upon later.
-        button[slotNum].strength = 1;
-        slotNum++;
+
+var currentInvGroup = "";
+var currentInvControlObject = noone;
+
+for (slotNum = 0; slotNum &lt; 90; slotNum++) {
+    //set values for inventory slots
+    inventory[slotNum, 0] = modNone;
+    inventory[slotNum, 1] = 1;
+    
+    //change current inventory group
+    if (slotNum == 0) {
+        currentInvGroup = "main";
+        invControlMain = instance_create(0, 0, objInvControl);
+        currentInvControlObject = invControlMain;
+        with invControlMain {
+            shownX = 64;
+            shownY = 64;
+            hiddenX = shownX;
+            hiddenY = shownY - 1000;
+            x = hiddenX;
+            y = hiddenY;
+        }
+        
+    } else if (slotNum == 40) {
+        currentInvGroup = "equipped";
+        invControlEquipped = instance_create(0, 0, objInvControl);
+        currentInvControlObject = invControlEquipped;
+        with invControlEquipped {
+            shownX = view_wview[0] - 64;
+            shownY = 64;
+            hiddenX = shownX + 1000;
+            hiddenY = shownY;
+            x = hiddenX;
+            y = hiddenY;
+        }
+        
+    } else if (slotNum = 50) {
+        currentInvGroup = "shop";
+        invControlShop = instance_create(0, 0, objInvControl);
+        currentInvControlObject = invControlShop;
+        with invControlShop {
+            shownX = 64;
+            shownY = view_hview[0] - (64 + (48 * 4));
+            hiddenX = shownX;
+            hiddenY = shownY + 1000;
+            x = hiddenX;
+            y = hiddenY;
+        }
+    }
+    
+    //make slots
+    switch currentInvGroup{
+        case "main":
+            with instance_create(0, 0, objInventorySlot) {
+                slot = other.slotNum;
+                strength = 1;
+                objectToFollow = other.invControlMain;
+                
+                xOffset = (other.slotNum mod 10) * 48;
+                yOffset = (other.slotNum div 10) * 48;
+            }
+            break;
+        case "equipped":
+            with instance_create(0, 0, objInventorySlot) {
+                slot = other.slotNum;
+                strength = 1;
+                objectToFollow = other.invControlEquipped;
+                
+                xOffset = 0;
+                yOffset = (other.slotNum - 40) * 48;
+            }
+            break;
+        case "shop":
+            with instance_create(0, 0, objInventorySlot) {
+                slot = other.slotNum;
+                strength = 1;
+                objectToFollow = other.invControlShop;
+                
+                xOffset = ((other.slotNum - 50) mod 10) * 48;
+                yOffset = ((other.slotNum - 50) div 10) * 48;
+            }
+            break;
     }
 }
 
-//create the buttons for the equipped slots
-var i = 0;
-equipped[0, 0] = 0;
-equipped[0, 1] = 1;
-for (i = i; i &lt; 10; i++) {
-    equipped[i, 0] = modNone; //inventory is an array that tracks what item is in what slot at any time. -1 means no item. The number here represents the item's id and is represented by the correlating image in "sprItems"
-    equipped[i, 1] = 1;
-    equippedButton[i] = instance_create(view_wview[0] - 64 + modHiddenXOffset, i * distanceBetweenSlots + 64, objEquipButton);
-    equippedButton[i].slot = i; //Allows an individual button to be easily called upon later.
-    equippedButton[i].strength = 1;
-}
+/*
+main inventory is slots 0-39
+equipped inventory is slots 40-49
+shop inventory is slots 50-89
+*/
 
 //Starting inventory
 inventory[0, 0] = modLuck;
@@ -276,6 +340,8 @@ if (game.showInv) {
     };
     */
 };
+
+//draw_text(32, 32, invControlMain.x)
 </string>
           </argument>
         </arguments>

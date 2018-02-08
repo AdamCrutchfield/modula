@@ -129,7 +129,7 @@ if (currentHealth &lt;= 0) {
         iFrames = other.iFrames;
     }*/
     if (irandom(100) &gt;= 25) instance_create(x, y, objHealthPickup);
-    generateMod(x, y, 0, 100);
+    generateMod(x, y, 0, 10);
 }
 </string>
           </argument>
