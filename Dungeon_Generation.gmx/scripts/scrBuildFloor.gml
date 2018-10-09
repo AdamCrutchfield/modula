@@ -1,7 +1,7 @@
 for (xx = 0; xx < 8; xx++) {
     for (yy = 0; yy < 8; yy++) {
-        xCord = (xx * 480); //X cord of individual region (each is 480 square pixels)
-        yCord = (yy * 480);
+        xCord = (xx * 960); //X cord of individual region (each is 480 square pixels) (960 room size/32 image size = 30 pixels in template)
+        yCord = (yy * 704);
         switch (ds_grid_get(global.dsRoomId,xx,yy)) {
             case 0010: {
                 //Place instances here using the xcord and y cord to maintain relative position

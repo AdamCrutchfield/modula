@@ -1,0 +1,16 @@
+First digit- Floor type: (supports values of 0-9)
+    0 = Greece
+    1 = Western
+    2 = City
+    3 = Future
+Second and third digit- Room tiling
+    1-15 where E,N,W,S are represented by 1,2,4,and 8 respectively (supports values 01-15)
+Fourth digit- Room variation (supports 0-9)
+    Variation meaning two ids with the same floor and tiling could still be created in up to 10 differnt ways
+    0- Varaint #1
+    1- Variant #2
+    2- Variant #3
+    3- Variant #4
+    
+Example: A room ID of 1132 would create a room following the western theme (1), with a E + W + S tiling (13) and would be the third of four possibilities (2).
+         Likewise, an id of 3010 would create a room following the future theme (3), with a E tiling (01), and would be the first of four possibilities.
