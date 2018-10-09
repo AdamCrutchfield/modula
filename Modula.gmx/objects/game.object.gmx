@@ -115,7 +115,7 @@ for (slotNum = 0; slotNum &lt; 90; slotNum++) {
         invControlEquipped = instance_create(0, 0, objInvControl);
         currentInvControlObject = invControlEquipped;
         with invControlEquipped {
-            shownX = view_wview[0] - 64;
+            shownX = view_xview[0] + view_wview[0] - 4*64;
             shownY = 64;
             hiddenX = shownX + 1000;
             hiddenY = shownY;
@@ -129,7 +129,7 @@ for (slotNum = 0; slotNum &lt; 90; slotNum++) {
         currentInvControlObject = invControlShop;
         with invControlShop {
             shownX = 64;
-            shownY = view_hview[0] - (64 + (48 * 4));
+            shownY = view_yview[0] + view_hview[0] - 2*(64 + (48 * 4));
             hiddenX = shownX;
             hiddenY = shownY + 1000;
             x = hiddenX;
@@ -230,6 +230,8 @@ if (keyboard_check_pressed(ord("N"))) {
 if (keyboard_check_pressed(ord("B"))) {
     room_goto_next();
 }
+if (keyboard_check_pressed(vk_f11)) window_set_fullscreen(!window_get_fullscreen());
+
 //add a random item to inventory
 if (keyboard_check_released(vk_shift)) {
     var item = choose(modLuck, modCelerity, modEtherealness, modRash);

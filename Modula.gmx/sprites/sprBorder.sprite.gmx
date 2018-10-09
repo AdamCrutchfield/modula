@@ -21,5 +21,10 @@
   <height>32</height>
   <frames>
     <frame index="0">images\sprBorder_0.png</frame>
+    <frame index="1">images\sprBorder_1.png</frame>
+    <frame index="2">images\sprBorder_2.png</frame>
+    <frame index="3">images\sprBorder_3.png</frame>
+    <frame index="4">images\sprBorder_4.png</frame>
+    <frame index="5">images\sprBorder_5.png</frame>
   </frames>
 </sprite>

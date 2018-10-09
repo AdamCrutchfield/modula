@@ -66,7 +66,7 @@ if (mouseHovering and (Rclick or Lclick)) {
     
     
     //if empty equipment slot, equip item. Otherwise, switch with mouse
-    if (slot &gt; 39 and slot &lt; 50) {
+    if (slot &gt;= 40 and slot &lt;= 49) {
         if (item = modNone) {
             script_execute(game.mouse[0], modEvents.pickup, game.mouse[1]);
             var _temp = item;
@@ -119,9 +119,12 @@ var textXOffset = 4;
 var textYoffset = 4;
 
 //draw self
-if (mouseHovering) sprite_index = sprBorderSelected;
-else sprite_index = sprBorder;
-draw_sprite_ext(sprite_index, 0, x, y, game.drawScale, game.drawScale, 0, c_white, 1);
+sprite_index = sprBorder;
+image_index = 0;
+if (mouseHovering) image_index++;
+if (slot &gt;= 40) image_index += 2;
+if (slot &gt;= 50) image_index += 2;
+draw_sprite_ext(sprite_index, image_index, x, y, game.drawScale, game.drawScale, 0, c_white, 1);
 
 //draw held item
 if (item != modNone) draw_sprite_ext(sprItems, getModImageIndex(item), x, y, game.drawScale, game.drawScale, 0, c_white, 1);
